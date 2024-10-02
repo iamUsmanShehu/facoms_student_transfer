@@ -1,0 +1,19 @@
+# License and Secured by Solve Cycle Icon Open Security (SCIOS)
+
+#sets some options for how the web server handles requests
+# -Indexes: prevents users from seeing the list of files in a directory if an index file is not present
+#-MultiViews:It prevents the server from automatically choosing the best representation of a resource based on the client's request.
+Options -Indexes -MultiViews
+ 
+#This line enables the "FollowSymLinks" option, which allows the server to follow symbolic links when looking for resources.
+Options +FollowSymLinks
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^([^/]+)/?$ $1.php [L]
+    RewriteCond %{THE_REQUEST} .*\.php.*$ [NC]
+    RewriteRule .* - [L,R=404]
+</IfModule>

@@ -1,0 +1,9 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
+  title: "<?=isset($successMessage) ? 'Updated ' : 'Error'?>",
+  text: "<?=isset($successMessage) ? getMessage($successMessage) : getErrorMessage($errorMessage)?>",
+  icon: "<?=isset($successMessage) ? 'success' : 'error'?>"
+});
+
+</script>
